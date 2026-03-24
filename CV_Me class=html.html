@@ -1,0 +1,582 @@
+CV_Me class=html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - WebDeveloper</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .lang-btn:hover {
+            background: white;
+            color: #667eea;
+            transform: scale(1.1);
+        }
+
+        .lang-btn.active {
+            background: white;
+            color: #667eea;
+            border-color: white;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding: 20px;
+        }
+
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .shape {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape1 { width: 80px; height: 80px; top: 20%; left: 10%; animation-delay: 0s; }
+        .shape2 { width: 60px; height: 60px; top: 60%; left: 80%; animation-delay: 2s; }
+        .shape3 { width: 100px; height: 100px; top: 70%; left: 20%; animation-delay: 4s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-30px); }
+        }
+
+        .hero-content {
+            z-index: 2;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            color: white;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        h1 {
+            font-size: 56px;
+            color: white;
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .tagline {
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .university-badge {
+            display: inline-block;
+            padding: 12px 30px;
+            background: rgba(255, 255, 255, 0.95);
+            color: #667eea;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 16px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            margin-bottom: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .about-section {
+            background: white;
+            padding: 100px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 42px;
+            text-align: center;
+            margin-bottom: 60px;
+            color: #333;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 20px auto 0;
+            border-radius: 2px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .about-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .about-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .card-text {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .skills-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 100px 20px;
+            color: white;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s;
+        }
+
+        .skill-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        .skill-name {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .skill-bar {
+            background: rgba(255, 255, 255, 0.2);
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            background: white;
+            height: 100%;
+            border-radius: 5px;
+            animation: fillBar 2s ease-out;
+        }
+
+        @keyframes fillBar {
+            from { width: 0; }
+        }
+
+        .contact-section {
+            background: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .social-link {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-size: 24px;
+            transition: transform 0.3s;
+        }
+
+        .social-link:hover {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .like-button {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .like-button:hover {
+            transform: scale(1.2);
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+        }
+
+        .like-button.liked {
+            animation: heartBeat 0.5s ease;
+        }
+
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.3); }
+            50% { transform: scale(1.1); }
+            75% { transform: scale(1.25); }
+        }
+
+        .like-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: white;
+            color: #ff6b6b;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="language-switcher">
+    <button class="lang-btn active" onclick="changeLanguage('en')">ENG</button>
+    <button class="lang-btn" onclick="changeLanguage('uz')">UZ</button>
+    <button class="lang-btn" onclick="changeLanguage('ru')">RUS</button>
+</div>
+
+<section class="hero">
+    <div class="floating-shapes">
+        <div class="shape shape1"></div>
+        <div class="shape shape2"></div>
+        <div class="shape shape3"></div>
+    </div>
+    <div class="hero-content">
+        <div class="profile-img">👩‍💻</div>
+        <h1 data-en="Madina Muxammadova" data-uz="Madina Muxammadova" data-ru="Мадина Мухаммадова">Madina Muxammadova</h1>
+        <div class="university-badge" data-en="Bachelor Student at Coventry University, Tashkent, Uzbekistan" data-uz="Coventry Universitetida Bakalavr Talabasi, Toshkent, O'zbekiston" data-ru="Студентка Бакалавриата в Университете Ковентри, Ташкент, Узбекистан">
+            🎓 Bachelor Student at Coventry University, Tashkent, Uzbekistan
+        </div>
+        <p class="tagline" data-en="Frontend Developer & Creative Problem Solver" data-uz="Frontend Dasturchi va Ijodiy Muammolarni Hal Qiluvchi" data-ru="Frontend Разработчик и Творческий Решатель Проблем">Frontend Developer & Creative Problem Solver</p>
+        <a href="#about" class="cta-button" data-en="Discover My Journey" data-uz="Mening Sayohatim" data-ru="Узнать Мою Историю">Discover My Journey</a>
+    </div>
+</section>
+
+<section class="about-section" id="about">
+    <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-grid">
+            <div class="about-card">
+                <div class="card-icon">🚀</div>
+                <h3 class="card-title">Passionate Developer</h3>
+                <p class="card-text">I love turning ideas into reality through code. Every project is an opportunity to learn something new and push the boundaries of what's possible.</p>
+            </div>
+            <div class="about-card">
+                <div class="card-icon">💡</div>
+                <h3 class="card-title">Creative Thinker</h3>
+                <p class="card-text">I believe the best solutions come from thinking outside the box. I approach every challenge with curiosity and a drive to innovate.</p>
+            </div>
+            <div class="about-card">
+                <div class="card-icon">🎯</div>
+                <h3 class="card-title">Goal-Oriented</h3>
+                <p class="card-text">I set ambitious goals and work relentlessly to achieve them. Whether it's mastering a new technology or building a groundbreaking app, I'm all in.</p>
+            </div>
+        </div>
+        <p style="text-align: center; color: #666; line-height: 1.8; max-width: 800px; margin: 0 auto;">
+            I am currently developing my skills in web development and continuously expanding my technical knowledge. While I recognize that I am in the early stages of my professional journey, I actively leverage modern tools and resources, including AI-assisted learning, to accelerate my growth. My approach to learning is self-directed and practical, focusing on building real-world projects to strengthen my understanding. I am deeply passionate about technology and its potential to solve complex problems. My ultimate aspiration is to contribute to innovative tech companies and grow into a skilled professional in the software development industry.
+        </p>
+    </div>
+</section>
+
+<section class="skills-section">
+    <div class="container">
+        <h2 class="section-title" style="color: white;">My Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-name">HTML</div>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 40%"></div>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-name">Figma</div>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 30%"></div>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-name">AI</div>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 60%"></div>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-name">Mathematics</div>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 45%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="contact-section">
+    <div class="container">
+        <h2 class="section-title">Let's Connect</h2>
+        <p style="color: #666; font-size: 18px; max-width: 600px; margin: 20px auto;">
+            I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision. Let's build something amazing together!
+        </p>
+        <div class="social-links">
+            <a href="mailto:mmmoongirl5@gmail.com" class="social-link" title="Email">📧</a>
+            <a href="https://www.linkedin.com/in/madina-muxammadova-74bba3389/" target="_blank" class="social-link" title="LinkedIn">💼</a>
+            <a href="https://t.me/Muxammadova570" target="_blank" class="social-link" title="Telegram">✈️</a>
+            <button class="like-button" onclick="toggleLike()" title="Like this page!">
+                <span id="heart">🤍</span>
+                <span class="like-count" id="likeCount">0</span>
+            </button>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2025 Madina Muxammadova. Built with passion, by the way I love coffee ☕</p>
+</footer>
+
+<script>
+    const translations = {
+        en: {
+            aboutTitle: "About Me",
+            skillsTitle: "My Skills",
+            contactTitle: "Let's Connect",
+            contactText: "I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision. Let's build something amazing together!",
+            card1Title: "Passionate Developer",
+            card1Text: "I love turning ideas into reality through code. Every project is an opportunity to learn something new and push the boundaries of what's possible.",
+            card2Title: "Creative Thinker",
+            card2Text: "I believe the best solutions come from thinking outside the box. I approach every challenge with curiosity and a drive to innovate.",
+            card3Title: "Goal-Oriented",
+            card3Text: "I set ambitious goals and work relentlessly to achieve them. Whether it's mastering a new technology or building a groundbreaking app, I'm all in.",
+            aboutText: "I am currently developing my skills in web development and continuously expanding my technical knowledge. While I recognize that I am in the early stages of my professional journey, I actively leverage modern tools and resources, including AI-assisted learning, to accelerate my growth. My approach to learning is self-directed and practical, focusing on building real-world projects to strengthen my understanding. I am deeply passionate about technology and its potential to solve complex problems. My ultimate aspiration is to contribute to innovative tech companies and grow into a skilled professional in the software development industry.",
+            footer: "Built with passion, by the way I love coffee ☕"
+        },
+        uz: {
+            aboutTitle: "Men Haqimda",
+            skillsTitle: "Mening Ko'nikmalarim",
+            contactTitle: "Bog'lanish",
+            contactText: "Men doimo yangi loyihalar, ijodiy g'oyalar va imkoniyatlarni muhokama qilishga tayyorman. Keling, birgalikda ajoyib dasturlar yaratamiz!",
+            card1Title: "Ishtiyoqli Dasturchi",
+            card1Text: "Men g'oyalarni kod orqali haqiqatga aylantrishni yaxshi ko'raman. Har bir loyiha yangi narsalarni o'rganish va mumkin bo'lgan narsalarning chegaralarini kengaytirish imkoniyatidir.",
+            card2Title: "Ijodiy Fikrlovchi",
+            card2Text: "Men eng yaxshi yechimlar an'anaviy fikrlashdan tashqarida ekanligiga ishonaman. Har bir qiyinchilikka qiziquvchanlik va innovatsiya bilan yondashaman.",
+            card3Title: "Maqsadga Yo'naltirilgan",
+            card3Text: "Men katta maqsadlar qo'yishni va ularga erishish uchun tinmay ishlashni yoqtiraman. Yangi texnologiyani o'zlashtirishmi yoki innovatsion ilova yaratishmi, men zavq bilan bajaraman.",
+            aboutText: "Men hozirda veb-dasturlash bo'yicha ko'nikmalarimni rivojlantiryapman va texnik bilimlarimni doimiy ravishda kengaytiryapman. Men professional faoliyatimning dastlabki bosqichida ekanligimni tan olsam-da, o'sishimni tezlashtirish uchun zamonaviy vositalar va resurslardan, jumladan sun'iy intellekt yordamida o'rganishdan faol foydalanaman. O'rganishga yondashuvim mustaqil va amaliy bo'lib, tushunchamni mustahkamlash uchun real loyihalar yaratishga qaratilgan. Men texnologiyaga va uning murakkab muammolarni hal qilish imkoniyatiga chuqur qiziqaman. Mening asosiy maqsadim innovatsion texnologiya kompaniyalariga hissa qo'shish va dasturiy ta'minot ishlab chiqish sohasida malakali mutaxassisga aylanishdir.",
+            footer: "Ishtiyoq bilan yaratilgan, Aytgancha men kofeni yaxshi ko'raman ☕"
+        },
+        ru: {
+            aboutTitle: "Обо Мне",
+            skillsTitle: "Мои Навыки",
+            contactTitle: "Давайте Свяжемся",
+            contactText: "Я всегда открыта для обсуждения новых проектов, творческих идей или возможностей стать частью вашего видения. Давайте создадим что-то удивительное вместе!",
+            card1Title: "Увлеченный Разработчик",
+            card1Text: "Я люблю воплощать идеи в реальность с помощью кода. Каждый проект - это возможность узнать что-то новое и раздвинуть границы возможного.",
+            card2Title: "Творческий Мыслитель",
+            card2Text: "Я верю, что лучшие решения приходят от нестандартного мышления. Я подхожу к каждому вызову с любопытством и стремлением к инновациям.",
+            card3Title: "Целеустремленная",
+            card3Text: "Я ставлю амбициозные цели и неустанно работаю над их достижением. Будь то освоение новой технологии или создание инновационного приложения, я полностью вовлечена.",
+            aboutText: "В настоящее время я развиваю свои навыки в веб-разработке и постоянно расширяю свои технические знания. Хотя я признаю, что нахожусь на ранних этапах своего профессионального пути, я активно использую современные инструменты и ресурсы, включая обучение с помощью искусственного интеллекта, для ускорения своего роста. Мой подход к обучению самостоятельный и практический, сосредоточенный на создании реальных проектов для укрепления понимания. Я глубоко увлечена технологиями и их потенциалом решать сложные проблемы. Моя конечная цель - внести вклад в инновационные технологические компании и стать квалифицированным профессионалом в индустрии разработки программного обеспечения.",
+            footer: "Создано с энтузиазмом ☕"
+        }
+    };
+
+    function changeLanguage(lang) {
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        event.target.classList.add('active');
+
+        document.querySelectorAll('[data-en]').forEach(element => {
+            if (element.getAttribute(`data-${lang}`)) {
+                element.textContent = element.getAttribute(`data-${lang}`);
+            }
+        });
+
+        const trans = translations[lang];
+        document.querySelector('.about-section .section-title').textContent = trans.aboutTitle;
+        document.querySelector('.skills-section .section-title').textContent = trans.skillsTitle;
+        document.querySelector('.contact-section .section-title').textContent = trans.contactTitle;
+        document.querySelector('.contact-section p').textContent = trans.contactText;
+
+        const cards = document.querySelectorAll('.about-card');
+        cards[0].querySelector('.card-title').textContent = trans.card1Title;
+        cards[0].querySelector('.card-text').textContent = trans.card1Text;
+        cards[1].querySelector('.card-title').textContent = trans.card2Title;
+        cards[1].querySelector('.card-text').textContent = trans.card2Text;
+        cards[2].querySelector('.card-title').textContent = trans.card3Title;
+        cards[2].querySelector('.card-text').textContent = trans.card3Text;
+
+        document.querySelector('.about-section > .container > p').textContent = trans.aboutText;
+        document.querySelector('footer p').innerHTML = `&copy; 2025 Madina Muxammadova. ${trans.footer}`;
+    }
+
+    let likes = 0;
+    let isLiked = false;
+
+    function toggleLike() {
+        const heart = document.getElementById('heart');
+        const likeCount = document.getElementById('likeCount');
+        const button = document.querySelector('.like-button');
+
+        if (!isLiked) {
+            likes++;
+            heart.textContent = '❤️';
+            isLiked = true;
+            button.classList.add('liked');
+        } else {
+            likes--;
+            heart.textContent = '🤍';
+            isLiked = false;
+        }
+
+        likeCount.textContent = likes;
+
+        setTimeout(() => {
+            button.classList.remove('liked');
+        }, 500);
+    }
+</script>
+</body>
+</html>
